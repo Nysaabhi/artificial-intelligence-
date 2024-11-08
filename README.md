@@ -458,6 +458,12 @@
             </a>
             <span>Listings</span>
         </div>
+        <div class="nav-item" data-page="listings">
+            <a href="listings.html">
+                <i class="fas fa-user"></i>
+            </a>
+            <span>Profile</span>
+        </div>
     </div>
 </nav>
 
