@@ -408,7 +408,7 @@ body {
                     <i class="fas fa-robot"></i>
                 </div>
                 <div class="message-content">
-                    <p>Hello! I'm your Web3 assistant. How can I help you explore the blockchain universe today?</p>
+                    <p>Hello! I'm your On-Demand assistant. How can I help you explore the service universe today?</p>
                 </div>
             </div>
         </div>
