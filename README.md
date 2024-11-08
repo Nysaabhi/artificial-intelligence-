@@ -14,9 +14,6 @@
     --text-light: #ffffff;
     --text-dark: #000000;
     --accent-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    --header-height: 60px;
-    --bottom-nav-height: 60px;
-    --input-container-height: 70px;
 }
 
 * {
@@ -42,10 +39,10 @@ body {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 30;
+    z-index: 1000;
     border-bottom: 2px solid var(--primary-color);
     backdrop-filter: blur(10px);
-    height: var(--header-height);
+    height: 60px;
 }
 
 .header-content {
@@ -87,21 +84,24 @@ body {
 /* Chatbot Container */
 .chatbot-container {
     position: fixed;
-    top: var(--header-height);
+    top: 60px;
     left: 0;
     right: 0;
-    bottom: var(--bottom-nav-height);
+    height: calc(100vh - 60px);
     background: rgba(26, 26, 31, 0.95);
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    z-index: 999;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 215, 0, 0.1);
-    overflow: hidden;
 }
 
 /* Chat Header */
 .chat-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 60px;
     padding: 15px;
     background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(253, 185, 49, 0.1));
@@ -109,8 +109,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 11;
-    flex-shrink: 0;
+    z-index: 2;
 }
 
 .chat-status {
@@ -132,11 +131,16 @@ body {
 
 /* Chat Messages */
 .chat-messages {
-    flex: 1;
+    position: absolute;
+    top: 60px;
+    bottom: 70px;
+    left: 0;
+    right: 0;
     overflow-y: auto;
     padding: 20px;
-    position: relative;
-    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) transparent;
 }
@@ -159,7 +163,6 @@ body {
     gap: 12px;
     max-width: 85%;
     animation: messageSlide 0.3s ease-out;
-    margin-bottom: 16px;
 }
 
 .bot-message {
@@ -196,16 +199,18 @@ body {
 
 /* Chat Input */
 .chat-input-container {
-    position: relative;
-    height: var(--input-container-height);
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    height: 70px;
     padding: 16px;
-    background: rgba(26, 26, 31, 0.98);
     border-top: 1px solid rgba(255, 215, 0, 0.1);
     display: flex;
     gap: 12px;
     align-items: center;
-    z-index: 12;
-    flex-shrink: 0;
+    background: rgba(26, 26, 31, 0.95);
+    z-index: 2;
 }
 
 #chatInput {
@@ -254,23 +259,21 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: var(--bottom-nav-height);
-    background: rgba(26, 26, 31, 0.98);
+    background: rgba(26, 26, 31, 0.95);
     padding: 8px 0;
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 215, 0, 0.2);
-    z-index: 20;
+    z-index: 1000;
+    height: 60px;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
     max-width: 600px;
     margin: 0 auto;
-    position: relative;
-    z-index: 21;
+    height: 100%;
 }
 
 .nav-item {
@@ -282,8 +285,6 @@ body {
     transition: all 0.3s ease;
     padding: 5px;
     cursor: pointer;
-    position: relative;
-    z-index: 22;
 }
 
 .nav-item i {
@@ -332,6 +333,25 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    .chatbot-container {
+        height: calc(100vh - 60px);
+    }
+
+    .chat-messages {
+        bottom: 70px;
+    }
+
+    .chat-input-container {
+        bottom: 60px;
+    }
+
+    .connect-wallet {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
     .header {
         padding: 8px 12px;
     }
@@ -378,6 +398,11 @@ body {
         background: rgba(26, 26, 31, 0.98);
     }
 }
+
+/* Ensure proper spacing for messages near the bottom */
+.chat-messages .message:last-child {
+    margin-bottom: 16px;
+}
     </style>
 </head>
 <body>
@@ -408,7 +433,7 @@ body {
                     <i class="fas fa-robot"></i>
                 </div>
                 <div class="message-content">
-                    <p>Hello! I'm your On-Demand assistant. How can I help you explore the service universe today?</p>
+                    <p>Hello! I'm your Web3 assistant. How can I help you explore the blockchain universe today?</p>
                 </div>
             </div>
         </div>
@@ -430,27 +455,27 @@ body {
     <div class="nav-container">
         <div class="nav-item active" data-page="home">
             <a href="https://nysaabhi.github.io/chat">
-                <i class="fas fa-home"></i>
+                <i class="fas fa-map"></i>
             </a>
-            <span>Home</span>
+            <span>Map</span>
         </div>
-        <div class="nav-item" data-page="tournament">
+        <div class="nav-item" data-page="history">
             <a href="https://nysaabhi.github.io/mymom">
-                <i class="fas fa-trophy"></i>
+                <i class="fas fa-history"></i>
             </a>
-            <span>Tournament</span>
+            <span>History</span>
         </div>
         <div class="nav-item" data-page="gallery">
             <a href="gallery.html">
-                <i class="fas fa-vr-cardboard"></i>
+                <i class="fas fa-filter"></i>
             </a>
-            <span>Gallery</span>
+            <span>Filter & Sort</span>
         </div>
         <div class="nav-item" data-page="location">
             <a href="location.html">
-                <i class="fas fa-map"></i>
+                <i class="fas fa-city"></i>
             </a>
-            <span>Location</span>
+            <span>Cities</span>
         </div>
         <div class="nav-item" data-page="listings">
             <a href="listings.html">
