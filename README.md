@@ -66,7 +66,7 @@ body {
     letter-spacing: 1.2px;
 }
 
-.connect-wallet {
+.wallet {
     padding: 10px 20px;
     background: var(--accent-gradient);
     border: none;
@@ -79,7 +79,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-.connect-wallet:hover {
+.wallet:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
 }
@@ -385,9 +385,9 @@ body {
     <header class="header">
         <div class="header-content">
             <div class="logo">Deep</div>
-            <button class="connect-wallet">
+            <button class="wallet">
                 <i class="fas fa-wallet"></i>
-                Connect
+                Wallet
             </button>
         </div>
     </header>
